@@ -121,28 +121,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const galleryImages = document.querySelectorAll(".gallery-image");
-    let currentAudio = null; // Variable para almacenar el audio actual
+    let currentAudio = null;
 
     galleryImages.forEach((image) => {
-        // Reproducir audio al pasar el cursor sobre la imagen
+
         image.addEventListener("mouseenter", () => {
             const audioSrc = image.getAttribute("data-audio");
             if (audioSrc) {
                 if (currentAudio) {
-                    currentAudio.pause(); // Detiene el audio actual si está reproduciéndose
-                    currentAudio.currentTime = 0; // Reinicia el audio
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
                 }
                 currentAudio = new Audio(audioSrc);
                 currentAudio.play();
             }
         });
 
-        // Detener el audio al salir de la imagen
         image.addEventListener("mouseleave", () => {
             if (currentAudio) {
-                currentAudio.pause(); // Detiene el audio cuando el cursor sale de la imagen
-                currentAudio.currentTime = 0; // Reinicia el audio
-                currentAudio = null; // Limpia la referencia al audio actual
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
             }
         });
     });
